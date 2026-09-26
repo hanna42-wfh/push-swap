@@ -1,6 +1,5 @@
 #include "ft_push_swap.h"
 
-
 void simple_alg(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a == NULL || stack_b == NULL)
