@@ -1,5 +1,6 @@
 #include "ft_push_swap.h"
 
+
 void simple_alg(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a == NULL || stack_b == NULL)
@@ -10,6 +11,8 @@ void simple_alg(t_stack *stack_a, t_stack *stack_b)
 		sort_four(stack_a, stack_b);
 	else if (stack_a->size == 5)
 		sort_five(stack_a, stack_b);
+	else
+		selection_sort(stack_a, stack_b);
 }
 
 void sort_three(t_stack *stack_a)
@@ -50,7 +53,7 @@ int minimum_index(t_stack *stack_a)
 	int	c;
 	int	d;
 	int	minimum_idx;
-
+	
 	a = stack_a->top->value;
 	b = stack_a->top->next->value;
 	c = stack_a->bottom->prev->value;
@@ -70,7 +73,7 @@ void sort_four(t_stack *stack_a, t_stack *stack_b)
 	int minimum_idx;
 
 	minimum_idx = minimum_index(stack_a);
-
+	
 	if (minimum_idx == 1)
 		sa(stack_a);
 	else if (minimum_idx == 2)
@@ -109,14 +112,14 @@ int five_minimum_index(t_stack *stack_a)
 		return (2);
 	else if ((d < a) && (d < b) && (d < c) && (d < e))
 		return (3);
-	else
+	else 
 		return (4);
 }
 
 void sort_five(t_stack *stack_a, t_stack *stack_b)
 {
 	int minimum_idx;
-
+	
 	if (stack_a == NULL || stack_b == NULL)
 		return ;
 	minimum_idx = five_minimum_index(stack_a);
