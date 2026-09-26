@@ -10,7 +10,7 @@ double compute_disorder (t_stack *stack_a)
 
 	if (stack_a == NULL || stack_a->top == NULL || stack_a->top->next == NULL)
 	{
-		printf("stack error\n"); //DEBUG
+		// printf("stack error\n"); //DEBUG
 		return (0.00);
 	}
 	mistakes = 0;
