@@ -5,6 +5,8 @@ void simple_alg(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a == NULL || stack_b == NULL)
 		return;
+	if (compute_disorder(stack_a) == 0.000000)
+		return;
 	if (stack_a->size == 3)
 		sort_three(stack_a);
     else if (stack_a->size == 4)
