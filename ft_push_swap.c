@@ -275,9 +275,9 @@ int main (int argc, char **argv)
 	}
 	else
 	{
-		//call adaptive algorithm
-		write(1, "Adaptive alg\n", 13); //DEBUG
+		adaptive_alg(&stack_a, &stack_b);
 		clean_stack_memory(&stack_a);
+		clean_stack_memory(&stack_b);
 	}
 	if (ft_strncmp(argv[1], "--bench", 8) == 0)
 	   print_op_counting();
