@@ -201,7 +201,7 @@ void clean_stack_memory(t_stack *stack)
 
 void strategy_selector(char *flag, t_stack *stack_a, t_stack *stack_b)
 {
-	printf("Disorder %f:", compute_disorder(stack_a)); // no printf allowed but for now we keep it for testing purpose, with header
+	// printf("Disorder %f:", compute_disorder(stack_a)); // no printf allowed but for now we keep it for testing purpose, with header
 	if (ft_strncmp("--simple", flag, 9) == 0)
 		simple_alg(stack_a, stack_b);
 	if (ft_strncmp("--medium", flag, 9) == 0)
@@ -228,7 +228,7 @@ int validate_flag(char *flag)
 		return (1);
 	else
 	{
-		write(2, "[ERROR] INVALID FLAG\n", 21);
+		write(2, "Error\n", 6);
 		return (-1); //invalid flag
 	}
 }
@@ -237,7 +237,7 @@ int arg_checker(int argc)
 {
 	if (argc < 2)
 	{
-		write(2, "[ERROR] NO ARGUMENTS\n", 21);
+		write(2, "Error\n", 6);
 		return (1);
 	}
 	return (0);
@@ -255,21 +255,31 @@ int main (int argc, char **argv)
 
 	if (has_flag == -1)
 		return (1);
+	if (argc - 1 - has_flag < 1)
+	{
+		write(2, "Error\n", 6);
+		return (1);
+	}
 	create_empty_stack(&stack_a);
 	create_empty_stack(&stack_b);
 	if (fill_stack_a(&stack_a, argc, argv, has_flag) != 1)
 	{
 		clean_stack_memory(&stack_a); //ERROR during fill the stack
-		return (write(2, "[ERROR]\n", 8),1);
+		return (write(2, "Error\n", 6),1);
 	}
 	if (has_flag == 1)
+	{
 		strategy_selector(argv[1], &stack_a, &stack_b);
+		clean_stack_memory(&stack_a);
+		clean_stack_memory(&stack_b);
+	}
 	else
 	{
-		//call adaptive algorithm
-		write(1, "Adaptive alg\n", 13); //DEBUG
+		adaptive_alg(&stack_a, &stack_b);
 		clean_stack_memory(&stack_a);
+		clean_stack_memory(&stack_b);
 	}
+	if (ft_strncmp(argv[1], "--bench", 8) == 0)
 	   print_op_counting();
 	return (0);
 }
