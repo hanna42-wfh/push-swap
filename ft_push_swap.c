@@ -201,7 +201,7 @@ void clean_stack_memory(t_stack *stack)
 
 void strategy_selector(char *flag, t_stack *stack_a, t_stack *stack_b)
 {
-	printf("Disorder %f:", compute_disorder(stack_a)); // no printf allowed but for now we keep it for testing purpose, with header
+	// printf("Disorder %f:", compute_disorder(stack_a)); // no printf allowed but for now we keep it for testing purpose, with header
 	if (ft_strncmp("--simple", flag, 9) == 0)
 		simple_alg(stack_a, stack_b);
 	if (ft_strncmp("--medium", flag, 9) == 0)
