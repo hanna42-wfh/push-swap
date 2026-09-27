@@ -44,4 +44,13 @@ void selection_sort(t_stack *Stack_a, t_stack *Stack_b);
 int	count_operations(int op_index);
 void print_op_counting(void);
 
+/* medium algorithm */
+void pre_sort(t_stack *stack_a);
+void ft_assign_index(int *str, t_stack *stack_a);
+int ft_sqrt(int nb);
+void check_chunk(t_stack *stack_a, t_stack *stack_b, int chunk_start, int chunk_end)
+void medium_alg(t_stack *stack_a, t_stack *stack_b);
+void find_max(t_stack *stack);
+void bring_to_top_b(t_stack *stack_b, int position);
+
 #endif
