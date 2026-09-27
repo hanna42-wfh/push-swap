@@ -9,7 +9,7 @@ SRC_DIR	= src
 OBJ_DIR	= obj
 
 SRC		= ft_push_swap.c ft_push_swap_sort.c ft_push_swap_operations.c \
-		ft_push_swap_disorder.c selection_sort.c
+		ft_push_swap_disorder.c selection_sort.c medium_alg.c
 
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 DEPS	= $(OBJS:.o=.d)
