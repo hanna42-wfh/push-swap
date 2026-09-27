@@ -205,6 +205,7 @@ void strategy_selector(char *flag, t_stack *stack_a, t_stack *stack_b)
 	if (ft_strncmp("--simple", flag, 9) == 0)
 		simple_alg(stack_a, stack_b);
 	if (ft_strncmp("--medium", flag, 9) == 0)
+		medium_alg(stack_a, stack_b);
 		write(1, "--medium", 8); //DEBUG -> call medium algorithm
 	if (ft_strncmp("--complex", flag, 10) == 0)
 		write(1, "--complex", 9); //DEBUG//call complex algorithm
