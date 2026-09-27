@@ -206,7 +206,6 @@ void strategy_selector(char *flag, t_stack *stack_a, t_stack *stack_b)
 		simple_alg(stack_a, stack_b);
 	if (ft_strncmp("--medium", flag, 9) == 0)
 		medium_alg(stack_a, stack_b);
-		write(1, "--medium", 8); //DEBUG -> call medium algorithm
 	if (ft_strncmp("--complex", flag, 10) == 0)
 		write(1, "--complex", 9); //DEBUG//call complex algorithm
 	if (ft_strncmp("--adaptive", flag, 11) == 0)
@@ -276,7 +275,7 @@ int main (int argc, char **argv)
 	}
 	else
 	{
-		adaptive_alg(&stack_a, &stack_b);
+		simple_alg(&stack_a, &stack_b); //later to be updated to adaptive
 		clean_stack_memory(&stack_a);
 		clean_stack_memory(&stack_b);
 	}
