@@ -91,7 +91,7 @@ void medium_alg(t_stack *stack_a, t_stack *stack_b)
 	}
 	while (stack_b->size > 0)
 	{
-		find_max(stack_b); // finds max and rotates it to the top
+		bring_to_top_b(stack_b, find_max(stack_b));
 		pa(stack_b, stack_a);
 	}
 }
@@ -113,7 +113,7 @@ void	check_chunk(t_stack *stack_a, t_stack *stack_b, int chunk_start, int chunk_
 	}
 }
 
-void	find_max(t_stack *stack)
+int	find_max(t_stack *stack)
 {
 	int		max;
 	int		max_position;
@@ -134,7 +134,7 @@ void	find_max(t_stack *stack)
 		current_num = current_num->next;
 		i++;
 	}
-	bring_to_top_b(stack, max_position);
+	return (max_position);
 }
 
 void	bring_to_top_b(t_stack *stack_b, int position)
