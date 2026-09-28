@@ -59,4 +59,7 @@ int count_bits(t_stack *stack_a);
 void radix_pass(t_stack *stack_a, t_stack *stack_b, int i);
 void complex_alg(t_stack *stack_a, t_stack *stack_b);
 
+/* adaptive algorithm */
+void adaptive_alg(t_stack *stack_a, t_stack *stack_b, double disorder);
+
 #endif
