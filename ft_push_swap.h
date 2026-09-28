@@ -51,7 +51,12 @@ void ft_assign_index(int *str, t_stack *stack_a);
 int ft_sqrt(int nb);
 void check_chunk(t_stack *stack_a, t_stack *stack_b, int chunk_start, int chunk_end);
 void medium_alg(t_stack *stack_a, t_stack *stack_b);
-void find_max(t_stack *stack);
+int find_max(t_stack *stack);
 void bring_to_top_b(t_stack *stack_b, int position);
+
+/* complex algorithm */
+int count_bits(t_stack *stack_a);
+void radix_pass(t_stack *stack_a, t_stack *stack_b, int i);
+void complex_alg(t_stack *stack_a, t_stack *stack_b);
 
 #endif
