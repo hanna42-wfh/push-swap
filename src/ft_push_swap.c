@@ -207,7 +207,7 @@ void strategy_selector(char *flag, t_stack *stack_a, t_stack *stack_b)
 	if (ft_strncmp("--medium", flag, 9) == 0)
 		medium_alg(stack_a, stack_b);
 	if (ft_strncmp("--complex", flag, 10) == 0)
-		write(1, "--complex", 9); //DEBUG//call complex algorithm
+		complex_alg(stack_a, stack_b);
 	if (ft_strncmp("--adaptive", flag, 11) == 0)
 		write(1, "--adaptive", 10); //DEBUG -> call adaptive
 		//call adaptive function which counts numbers and choose simple, medium or complex
