@@ -102,13 +102,13 @@ int duplicity_checker(char **splited_args, int len)
 	return (0);
 }
 
-char *join_args(int argc, char **argv, int has_flag)
+char *join_args(int argc, char **argv, int numbers_start)
 {
 	char	*joined;
 	char	*tmp;
 	int		i;
 
-	i = 1 + has_flag;
+	i = numbers_start;
 	joined = ft_strjoin(argv[i], " ");
 	if (joined == NULL)
 		return (NULL);
@@ -154,14 +154,14 @@ int validate_args(char **splited_args)
 	return (1);
 }
 
-int fill_stack_a(t_stack *stack_a, int argc, char **argv, int has_flag)
+int fill_stack_a(t_stack *stack_a, int argc, char **argv, int numbers_start)
 {
 	int		i;
 	char	*joined;
 	t_num	*new_num;
 	char	**splited_args;
 
-	joined = join_args(argc, argv, has_flag);
+	joined = join_args(argc, argv, numbers_start);
 	if (joined == NULL)
 		return (0);
 	splited_args =  ft_split(joined, ' ');
@@ -201,7 +201,6 @@ void clean_stack_memory(t_stack *stack)
 
 void strategy_selector(char *flag, t_stack *stack_a, t_stack *stack_b)
 {
-	// printf("Disorder %f:", compute_disorder(stack_a)); // no printf allowed but for now we keep it for testing purpose, with header
 	double	disorder;
 	disorder = compute_disorder(stack_a);
 	if (ft_strncmp("--simple", flag, 9) == 0)
@@ -212,8 +211,6 @@ void strategy_selector(char *flag, t_stack *stack_a, t_stack *stack_b)
 		complex_alg(stack_a, stack_b);
 	if (ft_strncmp("--adaptive", flag, 11) == 0)
 		adaptive_alg(stack_a, stack_b, disorder); 
-		//call adaptive function which counts numbers and choose simple, medium or complex
-
 }
 
 int validate_flag(char *flag)
@@ -245,43 +242,96 @@ int arg_checker(int argc)
 	return (0);
 }
 
-int main (int argc, char **argv)
+int validate_all_flags(int argc, char **argv)
 {
-	t_stack	stack_a;
-	t_stack stack_b;
-	int has_flag;
+	int i;
+	int result;
 
-	if ((arg_checker(argc) == 1))
-		return (1);
-	has_flag = validate_flag(argv[1]);
-
-	if (has_flag == -1)
-		return (1);
-	if (argc - 1 - has_flag < 1)
+	i = 1;
+	while (i < argc)
 	{
-		write(2, "Error\n", 6);
-		return (1);
+		if (ft_strncmp(argv[i], "--bench", 8) == 0)
+			i++;
+		else
+		{
+			result = validate_flag(argv[i]);
+			if (result == 1)
+				i++;
+			else if (result == -1)
+				return (-1);
+			else
+				break;
+		}
 	}
+	return (i);
+}
+
+char *find_strategy(char **argv, int numbers_start)
+{
+	int i;
+
+	i = 1;
+	while (i < numbers_start)
+	{
+		if (ft_strncmp(argv[i], "--bench", 8) != 0) //no bench
+			return (argv[i]); 
+		i++;
+	}
+	return (NULL);
+}
+
+int has_bench (char **argv, int numbers_start)
+{
+	int i;
+
+	i = 1;
+	while (i < numbers_start)
+	{
+		if (ft_strncmp(argv[i], "--bench", 8) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int run_push_swap(int argc, char **argv, int numbers_start, char *strategy, int bench)
+{
+	t_stack stack_a;
+	t_stack stack_b;
+
 	create_empty_stack(&stack_a);
 	create_empty_stack(&stack_b);
-	if (fill_stack_a(&stack_a, argc, argv, has_flag) != 1)
+	if (fill_stack_a(&stack_a, argc, argv, numbers_start) != 1)
 	{
-		clean_stack_memory(&stack_a); //ERROR during fill the stack
-		return (write(2, "Error\n", 6),1);
-	}
-	if (has_flag == 1)
-	{
-		strategy_selector(argv[1], &stack_a, &stack_b);
 		clean_stack_memory(&stack_a);
-		clean_stack_memory(&stack_b);
+	    return (write(2, "Error\n", 6),0);
 	}
+	if (strategy != NULL)
+		strategy_selector(strategy, &stack_a, &stack_b);
 	else
-	{
 		adaptive_alg(&stack_a, &stack_b, compute_disorder(&stack_a));
-		clean_stack_memory(&stack_a);
-		clean_stack_memory(&stack_b);
-	}
-	if (ft_strncmp(argv[1], "--bench", 8) == 0)
-	   print_op_counting();
+	if (bench)
+		print_op_counting();
+	clean_stack_memory(&stack_a);
+	clean_stack_memory(&stack_b);
+	return (1);
+}
+
+int main (int argc, char **argv)
+{
+	char *strategy; //nessesary for benchmark output
+	int numbers_start; //argument which contents numbers - first after all passible flags
+	int bench; //for bench flag checking
+
+	if (arg_checker(argc) == 1)
+		return (1);
+	numbers_start = validate_all_flags(argc, argv);
+	if (numbers_start == argc)
+		return (write(2, "Error\n", 6), 1);
+	strategy = find_strategy(argv, numbers_start);
+	bench = has_bench(argv, numbers_start);
+    //next main part like before, because norminette check lines
+	if (run_push_swap(argc, argv, numbers_start, strategy, bench) != 1)
+		return (1);
 	return (0);
 }
