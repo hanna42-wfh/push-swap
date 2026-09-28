@@ -202,6 +202,8 @@ void clean_stack_memory(t_stack *stack)
 void strategy_selector(char *flag, t_stack *stack_a, t_stack *stack_b)
 {
 	// printf("Disorder %f:", compute_disorder(stack_a)); // no printf allowed but for now we keep it for testing purpose, with header
+	double	disorder;
+	disorder = compute_disorder(stack_a);
 	if (ft_strncmp("--simple", flag, 9) == 0)
 		simple_alg(stack_a, stack_b);
 	if (ft_strncmp("--medium", flag, 9) == 0)
@@ -209,7 +211,7 @@ void strategy_selector(char *flag, t_stack *stack_a, t_stack *stack_b)
 	if (ft_strncmp("--complex", flag, 10) == 0)
 		complex_alg(stack_a, stack_b);
 	if (ft_strncmp("--adaptive", flag, 11) == 0)
-		write(1, "--adaptive", 10); //DEBUG -> call adaptive
+		adaptive_alg(stack_a, stack_b, disorder); 
 		//call adaptive function which counts numbers and choose simple, medium or complex
 
 }
@@ -275,7 +277,7 @@ int main (int argc, char **argv)
 	}
 	else
 	{
-		simple_alg(&stack_a, &stack_b); //later to be updated to adaptive
+		adaptive_alg(&stack_a, &stack_b, compute_disorder(&stack_a));
 		clean_stack_memory(&stack_a);
 		clean_stack_memory(&stack_b);
 	}
