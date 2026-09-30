@@ -1,11 +1,10 @@
 #include "ft_push_swap.h"
-#include <stdio.h>
 
 int	count_operations(int op_index)
 {
 	static int	op_counter[11];
 	int	i;
-	
+
 	if (op_index < 0)
 	{
 		i = 0;
@@ -63,17 +62,17 @@ void ss(t_stack *stack_a, t_stack *stack_b)
 void rotate_stack(t_stack *stack)
 {
 	t_num *first;
-	
+
 	if (stack == NULL || stack->top == NULL || stack->top->next == NULL)
 		return ;
-	first = stack->top; 
+	first = stack->top;
 	stack->top = first->next;
 	stack->top->prev = NULL;
-	
+
 	stack->bottom->next = first;
 	first->prev = stack->bottom;
 	first->next = NULL;
-	stack->bottom = first;	
+	stack->bottom = first;
 }
 
 void ra(t_stack *stack_a)
@@ -177,17 +176,29 @@ void pb(t_stack *stack_a, t_stack *stack_b)
 	count_operations(10);
 }
 
-void print_op_counting()
+void print_op_counting(void)
 {
-	printf("\n\nsa(%d)\n", count_operations(100));
-	printf("sb(%d)\n", count_operations(101));
-	printf("ss(%d)\n", count_operations(102));
-	printf("ra(%d)\n", count_operations(103));
-	printf("rb(%d)\n", count_operations(104));
-	printf("rr(%d)\n", count_operations(105));
-	printf("rra(%d)\n", count_operations(106));
-	printf("rrb(%d)\n", count_operations(107));
-	printf("rrr(%d)\n", count_operations(108));
-	printf("pa(%d)\n", count_operations(109));
-	printf("pb(%d)\n", count_operations(110));
+	write(2, "sa: ", 4);
+	ft_putnbr_fd(count_operations(100), 2);
+	write(2, "\nsb: ", 5);
+	ft_putnbr_fd(count_operations(101), 2);
+	write(2, "\nss: ", 5);
+	ft_putnbr_fd(count_operations(102), 2);
+	write(2, "\nra: ", 5);
+	ft_putnbr_fd(count_operations(103), 2);
+	write(2, "\nrb: ", 5);
+	ft_putnbr_fd(count_operations(104), 2);
+	write(2, "\nrr: ", 5);
+	ft_putnbr_fd(count_operations(105), 2);
+	write(2, "\nrra: ", 6);
+	ft_putnbr_fd(count_operations(106), 2);
+	write(2, "\nrrb: ", 6);
+	ft_putnbr_fd(count_operations(107), 2);
+	write(2, "\nrrr: ", 6);
+	ft_putnbr_fd(count_operations(108), 2);
+	write(2, "\npa: ", 5);
+	ft_putnbr_fd(count_operations(109), 2);
+	write(2, "\npb: ", 5);
+	ft_putnbr_fd(count_operations(110), 2);
+	write(2, "\n", 1);
 }
