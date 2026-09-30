@@ -1,5 +1,4 @@
 #include "ft_push_swap.h"
-#include <stdio.h>
 
 t_num *create_new_number(int num)
 {
@@ -199,18 +198,15 @@ void clean_stack_memory(t_stack *stack)
 	stack->size = 0;
 }
 
+// removed dead code: adaptive, as now it's checked in run_push_swap //
 void strategy_selector(char *flag, t_stack *stack_a, t_stack *stack_b)
 {
-	double	disorder;
-	disorder = compute_disorder(stack_a);
 	if (ft_strncmp("--simple", flag, 9) == 0)
 		simple_alg(stack_a, stack_b);
 	if (ft_strncmp("--medium", flag, 9) == 0)
 		medium_alg(stack_a, stack_b);
 	if (ft_strncmp("--complex", flag, 10) == 0)
 		complex_alg(stack_a, stack_b);
-	if (ft_strncmp("--adaptive", flag, 11) == 0)
-		adaptive_alg(stack_a, stack_b, disorder); 
 }
 
 int validate_flag(char *flag)
@@ -226,10 +222,7 @@ int validate_flag(char *flag)
 	else if (ft_strncmp("--adaptive", flag, 11) == 0)
 		return (1);
 	else
-	{
-		write(2, "Error\n", 6);
 		return (-1); //invalid flag
-	}
 }
 
 int arg_checker(int argc)
@@ -266,66 +259,63 @@ int validate_all_flags(int argc, char **argv)
 	return (i);
 }
 
-char *find_strategy(char **argv, int numbers_start)
+/* merged has_bench and find_strategy because they were doing the same */
+char	*find_strategy(char **argv, int numbers_start, int *bench)
 {
-	int i;
+	int		i;
+	char	*strategy;
 
 	i = 1;
-	while (i < numbers_start)
-	{
-		if (ft_strncmp(argv[i], "--bench", 8) != 0) //no bench
-			return (argv[i]); 
-		i++;
-	}
-	return (NULL);
-}
-
-int has_bench (char **argv, int numbers_start)
-{
-	int i;
-
-	i = 1;
+	strategy = NULL;
+	*bench = 0;
 	while (i < numbers_start)
 	{
 		if (ft_strncmp(argv[i], "--bench", 8) == 0)
-			return (1);
+			*bench = 1;
+		else if (strategy == NULL)
+			strategy = argv[i];
 		i++;
 	}
-	return (0);
+	return (strategy);
 }
 
+// void print_stack (t_stack *stack_a)
+// {
+// 	t_num	*current;
 
-void print_stack (t_stack *stack_a)
-{
-	t_num	*current;
-
-	current = stack_a->top;
-	while (current != NULL)
-	{
-		printf ("%d\n", current->value);
-		current = current->next;
-	}
-}
+// 	current = stack_a->top;
+// 	while (current != NULL)
+// 	{
+// 		printf ("%d\n", current->value);
+// 		current = current->next;
+// 	}
+// }
 
 int run_push_swap(int argc, char **argv, int numbers_start, char *strategy, int bench)
 {
 	t_stack stack_a;
 	t_stack stack_b;
+	double	disorder;
+	char	*plain_strategy;
 
 	create_empty_stack(&stack_a);
 	create_empty_stack(&stack_b);
 	if (fill_stack_a(&stack_a, argc, argv, numbers_start) != 1)
 	{
 		clean_stack_memory(&stack_a);
-	    return (write(2, "Error\n", 6),0);
+		return (write(2, "Error\n", 6),0);
 	}
-	if (strategy != NULL)
+	disorder = compute_disorder(&stack_a);
+	if (strategy != NULL && ft_strncmp(strategy, "--adaptive", 11) != 0)
+	{
 		strategy_selector(strategy, &stack_a, &stack_b);
+		plain_strategy = get_plain_strategy(strategy);
+	}
 	else
-		adaptive_alg(&stack_a, &stack_b, compute_disorder(&stack_a));
+		plain_strategy = adaptive_alg(&stack_a, &stack_b, disorder);
 	if (bench)
-		print_op_counting();
-	print_stack(&stack_a);
+		print_bench(&stack_a, disorder, plain_strategy, get_complexity(plain_strategy));
+	// print_stack(&stack_a);
 	clean_stack_memory(&stack_a);
 	clean_stack_memory(&stack_b);
 	return (1);
@@ -340,10 +330,9 @@ int main (int argc, char **argv)
 	if (arg_checker(argc) == 1)
 		return (1);
 	numbers_start = validate_all_flags(argc, argv);
-	if (numbers_start == argc)
+	if (numbers_start < 0 || numbers_start >= argc)
 		return (write(2, "Error\n", 6), 1);
-	strategy = find_strategy(argv, numbers_start);
-	bench = has_bench(argv, numbers_start);
+	strategy = find_strategy(argv, numbers_start, &bench);
     //next main part like before, because norminette check lines
 	if (run_push_swap(argc, argv, numbers_start, strategy, bench) != 1)
 		return (1);
