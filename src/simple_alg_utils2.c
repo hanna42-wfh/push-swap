@@ -85,23 +85,3 @@ void	push_beast(t_stack *stack_a, t_stack *stack_b, int possition)
 	single_rotate(stack_a, stack_b, cost_a, cost_b);
 	pb(stack_a, stack_b);
 }
-static void	align_stack_b(t_stack *stack_b)
-{
-	int	max;
-	int	min;
-	int	max_pos;
-
-	if (!stack_b || !stack_b->top)
-		return ;
-	max_pos = find_maximum_position(stack_b, &max, &min);
-	if (max_pos <= stack_b->size / 2)
-	{
-		while (max_pos-- > 0)
-			rb(stack_b);
-	}
-	else
-	{
-		while (max_pos++ < stack_b->size)
-			rrb(stack_b);
-	}
-}

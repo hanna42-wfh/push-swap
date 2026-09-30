@@ -1,5 +1,26 @@
 #include "ft_push_swap.h"
 
+void	align_stack_b(t_stack *stack_b)
+{
+	int	max;
+	int	min;
+	int	max_pos;
+
+	if (!stack_b || !stack_b->top)
+		return ;
+	max_pos = find_maximum_position(stack_b, &max, &min);
+	if (max_pos <= stack_b->size / 2)
+	{
+		while (max_pos-- > 0)
+			rb(stack_b);
+	}
+	else
+	{
+		while (max_pos++ < stack_b->size)
+			rrb(stack_b);
+	}
+}
+
 void	insertion_sort(t_stack *stack_a, t_stack *stack_b)
 {
 	int	position;
