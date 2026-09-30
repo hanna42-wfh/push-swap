@@ -84,5 +84,20 @@ int fill_stack_a(t_stack *stack_a, int argc, char **argv, int numbers_start);
 void clean_stack_memory(t_stack *stack);
 int arg_checker(int argc);
 int validate_all_flags(int argc, char **argv);
+void print_stack(t_stack *stack_a);
+/*simple_alg*/
+int	find_maximum_position(t_stack *stack_b, int *maximum, int *minimum);
+
+int	find_beast_cost(t_stack *stack_a, t_stack *stack_b);
+void	push_beast(t_stack *stack_a, t_stack *stack_b, int possition);
+int	find_target_position(t_stack *stack_b, int top_a_value);
+void	align_stack_b(t_stack *stack_b);
+int	cost_stack_b(t_stack *stack_b, int value);
+int	cost_stack_a(t_stack *stack_a, int index);
+int	total_cost(int cost_a, int cost_b);
+void	both_rotate(t_stack *stack_a, t_stack *stack_b, int *cost_a, int *cost_b);
+void	single_rotate(t_stack *stack_a, t_stack *stack_b, int cost_a, int cost_b);
+void	push_beast(t_stack *stack_a, t_stack *stack_b, int possition);
+void	insertion_sort(t_stack *stack_a, t_stack *stack_b);
 
 #endif
