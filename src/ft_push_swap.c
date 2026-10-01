@@ -225,11 +225,11 @@ int validate_flag(char *flag)
 		return (-1); //invalid flag
 }
 
+/* subject says it should return nothing if no arguments */
 int arg_checker(int argc)
 {
 	if (argc < 2)
 	{
-		write(2, "Error\n", 6);
 		return (1);
 	}
 	return (0);
