@@ -21,7 +21,7 @@ void simple_alg(t_stack *stack_a, t_stack *stack_b)
 	else if (stack_a->size == 5)
 		sort_five(stack_a, stack_b);
 	else
-		selection_sort(stack_a, stack_b);
+		insertion_sort(stack_a, stack_b);
 }
 
 void sort_three(t_stack *stack_a)
