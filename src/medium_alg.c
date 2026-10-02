@@ -79,7 +79,7 @@ void medium_alg(t_stack *stack_a, t_stack *stack_b)
 	if (compute_disorder(stack_a) == 0.000000)
 		return;
 	pre_sort(stack_a);
-	chunk_size = ft_sqrt(stack_a->size);
+	chunk_size = ft_sqrt(stack_a->size) * 1.8;
 	num_chunks = (stack_a->size + chunk_size - 1) / chunk_size;
 	c = 0;
 	while (c < num_chunks)
