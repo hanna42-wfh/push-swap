@@ -12,14 +12,14 @@
 
 #include "ft_push_swap.h"
 
-void print_stack (t_stack *stack_a)
+void	print_stack(t_stack *stack_a)
 {
-   	t_num	*current;
+	t_num	*current;
 
-   	current = stack_a->top;
-   	while (current != NULL)
-   	{
-   		ft_printf ("%d\n", current->value);
-   		current = current->next;
-   	}
+	current = stack_a->top;
+	while (current != NULL)
+	{
+		ft_printf ("%d\n", current->value);
+		current = current->next;
+	}
 }
