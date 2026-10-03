@@ -43,3 +43,30 @@ char	*get_complexity(char *strategy)
 		return ("O(n*log(n))");
 	return ("O(1)");
 }
+
+int	count_operations(int op_index)
+{
+	static int	op_counter[11];
+	int	i;
+
+	if (op_index < 0)
+	{
+		i = 0;
+		while (i < 11)
+		{
+			op_counter[i] = 0;
+			i++;
+		}
+		return (0);
+	}
+	if (op_index >= 100 && op_index <= 110)
+	{
+		return (op_counter[op_index - 100]);
+	}
+	if (op_index >= 0 && op_index <= 10)
+	{
+		op_counter[op_index]++;
+		return (op_counter[op_index]);
+	}
+	return(op_counter[op_index]);
+}
