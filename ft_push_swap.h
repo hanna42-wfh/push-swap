@@ -6,7 +6,7 @@
 /*   By: hpiotrow <hpiotrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/03 13:50:22 by hpiotrow          #+#    #+#             */
-/*   Updated: 2026/10/03 13:50:23 by hpiotrow         ###   ########.fr       */
+/*   Updated: 2026/10/03 16:11:51 by hpiotrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char *adaptive_alg(t_stack *stack_a, t_stack *stack_b, double disorder);
 void ft_put_percent_fd(double disorder, int fd);
 void print_bench(t_stack *stack_a, double disorder, char *strategy, char *complexity);
 char *get_plain_strategy(char *flag);
-char *get_complexity(char *strategy);
+char	*get_complexity(char *strategy, t_stack *stack_a, t_stack *stack_b, double disorder);
 char *find_strategy(char **argv, int numbers_start, int *bench);
 void strategy_selector(char *flag, t_stack *stack_a, t_stack *stack_b);
 int validate_flag(char *flag);
