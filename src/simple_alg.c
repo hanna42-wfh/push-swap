@@ -12,23 +12,23 @@
 
 #include "ft_push_swap.h"
 
-void simple_alg(t_stack *stack_a, t_stack *stack_b)
+void	simple_alg(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a == NULL || stack_b == NULL)
-		return;
+		return ;
 	if (compute_disorder(stack_a) == 0.000000)
-		return;
+		return ;
 	if (stack_a->size <= 1)
-		return;
+		return ;
 	else if (stack_a->size == 2)
 	{
 		if (stack_a->top->value > stack_a->top->next->value)
 			sa(stack_a);
-		return;
+		return ;
 	}
 	if (stack_a->size == 3)
 		sort_three(stack_a);
-    else if (stack_a->size == 4)
+	else if (stack_a->size == 4)
 		sort_four(stack_a, stack_b);
 	else if (stack_a->size == 5)
 		sort_five(stack_a, stack_b);
