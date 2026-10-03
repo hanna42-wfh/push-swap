@@ -6,7 +6,7 @@
 /*   By: hpiotrow <hpiotrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/03 11:36:55 by mradkovi          #+#    #+#             */
-/*   Updated: 2026/10/03 13:37:54 by hpiotrow         ###   ########.fr       */
+/*   Updated: 2026/10/03 14:11:40 by hpiotrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int duplicity_checker(char **splited_args, int len)
 	int *splited_copy;
 	int i;
 	int j;
+	long num;
 
 	splited_copy = (int *)malloc(sizeof(int) * (len));
 	if (splited_copy == NULL)
@@ -50,7 +51,10 @@ int duplicity_checker(char **splited_args, int len)
 	i = 0;
 	while (i < len) //convert copy to int numbers
 	{
-		splited_copy[i] = ft_atoi(splited_args[i]);
+		num = ft_atoi(splited_args[i]);
+		if (num > 2147483647 || num < -2147483648)
+			return (1);
+		splited_copy[i] = num;
 		i++;
 	}
 	i = 0;
