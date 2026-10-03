@@ -12,11 +12,13 @@
 
 #include "ft_push_swap.h"
 
-int main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	char *strategy; //nessesary for benchmark output
-	int numbers_start; //argument which contents numbers - first after all passible flags
-	int bench; //for bench flag checking
+	t_stack	stack_a;
+	t_stack	stack_b;
+	char	*strategy;
+	int		numbers_start;
+	int		bench;
 
 	if (arg_checker(argc) == 1)
 		return (1);
@@ -24,13 +26,19 @@ int main (int argc, char **argv)
 	if (numbers_start < 0 || numbers_start >= argc)
 		return (write(2, "Error\n", 6), 1);
 	strategy = find_strategy(argv, numbers_start, &bench);
-    //next main part like before, because norminette check lines
-	if (run_push_swap(argc, argv, numbers_start, strategy, bench) != 1)
+	create_empty_stack(&stack_a);
+	create_empty_stack(&stack_b);
+	if (fill_stack_a(&stack_a, argc, argv, numbers_start) != 1)
+	{
+		clean_stack_memory(&stack_a);
+		return (write(2, "Error\n", 6), 0);
+	}
+	if (run_push_swap(&stack_a, &stack_b, strategy, bench) != 1)
 		return (1);
 	return (0);
 }
 
-int arg_checker(int argc)
+int	arg_checker(int argc)
 {
 	if (argc < 2)
 	{
@@ -39,32 +47,23 @@ int arg_checker(int argc)
 	return (0);
 }
 
-int run_push_swap(int argc, char **argv, int numbers_start, char *strategy, int bench)
+int	run_push_swap(t_stack *stack_a, t_stack *stack_b, char *strategy, int bench)
 {
-	t_stack stack_a;
-	t_stack stack_b;
 	double	disorder;
 	char	*plain_strategy;
 
-	create_empty_stack(&stack_a);
-	create_empty_stack(&stack_b);
-	if (fill_stack_a(&stack_a, argc, argv, numbers_start) != 1)
-	{
-		clean_stack_memory(&stack_a);
-		return (write(2, "Error\n", 6),0);
-	}
-	disorder = compute_disorder(&stack_a);
+	disorder = compute_disorder(stack_a);
 	if (strategy != NULL)
 	{
-		strategy_selector(strategy, &stack_a, &stack_b);
+		strategy_selector(strategy, stack_a, stack_b);
 		plain_strategy = get_plain_strategy(strategy);
 	}
 	else
 		plain_strategy = "adaptive";
 	if (bench)
-		print_bench(&stack_a, disorder, plain_strategy, get_complexity(plain_strategy, &stack_a, &stack_b, disorder));
-	// print_stack(&stack_a);
-	clean_stack_memory(&stack_a);
-	clean_stack_memory(&stack_b);
+		print_bench(stack_a, disorder, plain_strategy,
+			get_complexity(plain_strategy, stack_a, stack_b, disorder));
+	clean_stack_memory(stack_a);
+	clean_stack_memory(stack_b);
 	return (1);
 }
