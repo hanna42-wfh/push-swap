@@ -12,7 +12,7 @@
 
 #include "ft_push_swap.h"
 
-void print_op_counting(void)
+void	print_op_counting(void)
 {
 	write(2, "sa: ", 4);
 	ft_putnbr_fd(count_operations(100), 2);
