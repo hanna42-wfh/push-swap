@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_push_swap.h"
+
 int validate_flag(char *flag)
 {
 	if (ft_strncmp(flag, "--", 2) != 0)
