@@ -65,6 +65,7 @@ int	find_target_position(t_stack *stack_b, int top_a_value)
 	}
 	return (0);
 }
+
 int	cost_stack_a(t_stack *stack_a, int index)
 {
 	if (index <= stack_a->size / 2)

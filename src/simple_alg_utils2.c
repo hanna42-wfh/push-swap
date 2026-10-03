@@ -38,7 +38,8 @@ int	find_beast_cost(t_stack *stack_a, t_stack *stack_b)
 	return (position);
 }
 
-void	both_rotate(t_stack *stack_a, t_stack *stack_b, int *cost_a, int *cost_b)
+void	both_rotate(t_stack *stack_a, t_stack *stack_b,
+					int *cost_a, int *cost_b)
 {
 	while (*cost_a > 0 && *cost_b > 0)
 	{
@@ -54,7 +55,8 @@ void	both_rotate(t_stack *stack_a, t_stack *stack_b, int *cost_a, int *cost_b)
 	}
 }
 
-void	single_rotate(t_stack *stack_a, t_stack *stack_b, int cost_a, int cost_b)
+void	single_rotate(t_stack *stack_a, t_stack *stack_b,
+	int cost_a, int cost_b)
 {
 	while (cost_a > 0)
 	{
