@@ -6,14 +6,17 @@
 /*   By: hpiotrow <hpiotrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/03 11:36:46 by mradkovi          #+#    #+#             */
-/*   Updated: 2026/10/03 16:11:56 by hpiotrow         ###   ########.fr       */
+/*   Updated: 2026/10/03 17:28:25 by hpiotrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-// removed dead code: adaptive, as now it's checked in run_push_swap //
-void strategy_selector(char *flag, t_stack *stack_a, t_stack *stack_b)
+/* Dispatches to the matching explicit strategy based on flag.
+ * --adaptive is intentionally not handled here, since adaptive
+ * is called directly from run_push_swap so its real internal
+ * choice can be captured for --bench reporting. */
+void	strategy_selector(char *flag, t_stack *stack_a, t_stack *stack_b)
 {
 	if (ft_strncmp("--simple", flag, 9) == 0)
 		simple_alg(stack_a, stack_b);
@@ -23,7 +26,9 @@ void strategy_selector(char *flag, t_stack *stack_a, t_stack *stack_b)
 		complex_alg(stack_a, stack_b);
 }
 
-/* merged has_bench and find_strategy because they were doing the same */
+/* Scans argv[1..numbers_start) for flags: sets *bench if --bench
+ * is present, and returns the first non-bench flag found (or NULL
+ * if none, meaning adaptive should be used by default). */
 char	*find_strategy(char **argv, int numbers_start, int *bench)
 {
 	int		i;
@@ -43,10 +48,13 @@ char	*find_strategy(char **argv, int numbers_start, int *bench)
 	return (strategy);
 }
 
-int validate_flag(char *flag)
+/* Checks a single argument against the four known strategy flags.
+ * Returns 1 if valid, 0 if it's not a flag at all (doesn't start
+ * with --), or -1 if it starts with -- but matches nothing known. */
+int	validate_flag(char *flag)
 {
 	if (ft_strncmp(flag, "--", 2) != 0)
-		return (0); //no flag
+		return (0);
 	if (ft_strncmp("--simple", flag, 9) == 0)
 		return (1);
 	else if (ft_strncmp("--medium", flag, 9) == 0)
@@ -56,13 +64,17 @@ int validate_flag(char *flag)
 	else if (ft_strncmp("--adaptive", flag, 11) == 0)
 		return (1);
 	else
-		return (-1); //invalid flag
+		return (-1);
 }
 
-int validate_all_flags(int argc, char **argv)
+/* Walks argv past every leading flag (--bench and/or one strategy
+ * flag), validating each one. Returns the index of the first
+ * non-flag argument (where numbers start), or -1 if an unknown
+ * flag was found. */
+int	validate_all_flags(int argc, char **argv)
 {
-	int i;
-	int result;
+	int	i;
+	int	result;
 
 	i = 1;
 	while (i < argc)
@@ -77,7 +89,7 @@ int validate_all_flags(int argc, char **argv)
 			else if (result == -1)
 				return (-1);
 			else
-				break;
+				break ;
 		}
 	}
 	return (i);
