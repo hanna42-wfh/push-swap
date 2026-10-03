@@ -6,7 +6,7 @@
 /*   By: hpiotrow <hpiotrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/03 14:42:42 by hpiotrow          #+#    #+#             */
-/*   Updated: 2026/10/03 14:42:45 by hpiotrow         ###   ########.fr       */
+/*   Updated: 2026/10/03 16:11:49 by hpiotrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ char	*get_plain_strategy(char *flag)
 	return (flag);
 }
 
-char	*get_complexity(char *strategy)
+char	*get_complexity(char *strategy, t_stack *stack_a, t_stack *stack_b, double disorder)
 {
 	if (ft_strncmp(strategy, "simple", 7) == 0)
 		return ("O(n^2)");
-	if (ft_strncmp(strategy, "medium", 7) == 0)
+	else if (ft_strncmp(strategy, "medium", 7) == 0)
 		return ("O(n*sqrt(n))");
-	if (ft_strncmp(strategy, "complex", 8) == 0)
+	else if (ft_strncmp(strategy, "complex", 8) == 0)
 		return ("O(n*log(n))");
-	return ("O(1)");
+	return adaptive_alg(stack_a, stack_b, disorder);
 }
 
 int	count_operations(int op_index)
