@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_push_swap.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hpiotrow <hpiotrow@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/03 13:50:22 by hpiotrow          #+#    #+#             */
+/*   Updated: 2026/10/03 13:50:23 by hpiotrow         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PUSH_SWAP_H
 # define FT_PUSH_SWAP_H
 
@@ -45,12 +57,12 @@ void selection_sort(t_stack *Stack_a, t_stack *Stack_b);
 int count_operations(int op_index);
 void print_op_counting(void);
 int run_push_swap(int argc, char **argv, int numbers_start, char *strategy, int bench);
-int minimum_index(t_stack *stack_a);
+int four_minimum_index(t_stack *stack_a);
 int five_minimum_index(t_stack *stack_a);
 
 /* medium algorithm */
 void pre_sort(t_stack *stack_a);
-void ft_assign_index(int *str, t_stack *stack_a);
+void assign_index(int *str, t_stack *stack_a);
 int ft_sqrt(int nb);
 void check_chunk(t_stack *stack_a, t_stack *stack_b, int chunk_start, int chunk_end);
 void medium_alg(t_stack *stack_a, t_stack *stack_b);
