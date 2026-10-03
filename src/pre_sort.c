@@ -6,7 +6,7 @@
 /*   By: hpiotrow <hpiotrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/03 12:05:57 by mradkovi          #+#    #+#             */
-/*   Updated: 2026/10/03 13:36:32 by hpiotrow         ###   ########.fr       */
+/*   Updated: 2026/10/03 14:09:56 by hpiotrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	pre_sort(t_stack *stack_a)
 		}
 		i++;
 	}
-	ft_assign_index(temp_array, stack_a);
+	assign_index(temp_array, stack_a);
 	free(temp_array);
 }
 
