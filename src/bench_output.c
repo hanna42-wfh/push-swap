@@ -12,7 +12,8 @@
 
 #include "ft_push_swap.h"
 
-void	print_bench(t_stack *stack_a, double disorder, char *strategy, char *complexity)
+void	print_bench(t_stack *stack_a, double disorder,
+					char *strategy, char *complexity)
 {
 	int	total;
 	int	i;
@@ -45,7 +46,8 @@ char	*get_plain_strategy(char *flag)
 	return (flag);
 }
 
-char	*get_complexity(char *strategy, t_stack *stack_a, t_stack *stack_b, double disorder)
+char	*get_complexity(char *strategy, t_stack *stack_a,
+						t_stack *stack_b, double disorder)
 {
 	if (ft_strncmp(strategy, "simple", 7) == 0)
 		return ("O(n^2)");
@@ -53,13 +55,13 @@ char	*get_complexity(char *strategy, t_stack *stack_a, t_stack *stack_b, double 
 		return ("O(n*sqrt(n))");
 	else if (ft_strncmp(strategy, "complex", 8) == 0)
 		return ("O(n*log(n))");
-	return adaptive_alg(stack_a, stack_b, disorder);
+	return (adaptive_alg(stack_a, stack_b, disorder));
 }
 
 int	count_operations(int op_index)
 {
 	static int	op_counter[11];
-	int	i;
+	int			i;
 
 	if (op_index < 0)
 	{
@@ -80,5 +82,5 @@ int	count_operations(int op_index)
 		op_counter[op_index]++;
 		return (op_counter[op_index]);
 	}
-	return(op_counter[op_index]);
+	return (op_counter[op_index]);
 }
