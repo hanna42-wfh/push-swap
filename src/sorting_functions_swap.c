@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting_functions_1.c                              :+:      :+:    :+:   */
+/*   sorting_functions_swap.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hpiotrow <hpiotrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/03 11:47:15 by hpiotrow          #+#    #+#             */
-/*   Updated: 2026/10/03 11:50:35 by hpiotrow         ###   ########.fr       */
+/*   Updated: 2026/10/03 18:14:00 by hpiotrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-void sa(t_stack *stack_a)
+/* sa: swaps the top two elements of stack_a, prints "sa\n", and
+ * tallies the operation. */
+void	sa(t_stack *stack_a)
 {
 	swap_stack(stack_a);
 	write(1, "sa\n", 3);
-   	count_operations(0);
+	count_operations(0);
 }
 
-void sb(t_stack *stack_b)
+/* sb: swaps the top two elements of stack_b, prints "sb\n", and
+ * tallies the operation. */
+void	sb(t_stack *stack_b)
 {
 	swap_stack(stack_b);
 	write(1, "sb\n", 3);
 	count_operations(1);
 }
 
-void ss(t_stack *stack_a, t_stack *stack_b)
+/* ss: performs sa and sb simultaneously, prints "ss\n" once, and
+ * tallies the operation. */
+void	ss(t_stack *stack_a, t_stack *stack_b)
 {
 	swap_stack(stack_a);
 	swap_stack(stack_b);
@@ -34,9 +40,12 @@ void ss(t_stack *stack_a, t_stack *stack_b)
 	count_operations(2);
 }
 
-void swap_stack(t_stack *stack)
+/* Swaps the VALUES of the top two nodes of stack (the nodes
+ * themselves stay in place, only their contents trade). Does
+ * nothing if stack is NULL, empty, or has only one element. */
+void	swap_stack(t_stack *stack)
 {
-	int swap;
+	int	swap;
 
 	if (stack == NULL || stack->top == NULL || stack->top->next == NULL)
 		return ;
