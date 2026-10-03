@@ -45,6 +45,8 @@ void selection_sort(t_stack *Stack_a, t_stack *Stack_b);
 int count_operations(int op_index);
 void print_op_counting(void);
 int run_push_swap(int argc, char **argv, int numbers_start, char *strategy, int bench);
+int minimum_index(t_stack *stack_a);
+int five_minimum_index(t_stack *stack_a);
 
 /* medium algorithm */
 void pre_sort(t_stack *stack_a);
@@ -89,15 +91,15 @@ void print_stack(t_stack *stack_a);
 int	find_maximum_position(t_stack *stack_b, int *maximum, int *minimum);
 
 int	find_beast_cost(t_stack *stack_a, t_stack *stack_b);
-void	push_beast(t_stack *stack_a, t_stack *stack_b, int possition);
+void push_beast(t_stack *stack_a, t_stack *stack_b, int possition);
 int	find_target_position(t_stack *stack_b, int top_a_value);
-void	align_stack_b(t_stack *stack_b);
+void align_stack_b(t_stack *stack_b);
 int	cost_stack_b(t_stack *stack_b, int value);
 int	cost_stack_a(t_stack *stack_a, int index);
 int	total_cost(int cost_a, int cost_b);
-void	both_rotate(t_stack *stack_a, t_stack *stack_b, int *cost_a, int *cost_b);
-void	single_rotate(t_stack *stack_a, t_stack *stack_b, int cost_a, int cost_b);
-void	push_beast(t_stack *stack_a, t_stack *stack_b, int possition);
-void	insertion_sort(t_stack *stack_a, t_stack *stack_b);
+void both_rotate(t_stack *stack_a, t_stack *stack_b, int *cost_a, int *cost_b);
+void single_rotate(t_stack *stack_a, t_stack *stack_b, int cost_a, int cost_b);
+void push_beast(t_stack *stack_a, t_stack *stack_b, int possition);
+void insertion_sort(t_stack *stack_a, t_stack *stack_b);
 
 #endif
