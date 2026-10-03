@@ -105,29 +105,3 @@ void	bring_to_top_b(t_stack *stack_b, int position)
 		}
 	}
 }
-
-/* MAYBE WILL USE LATER
-
-void	bring_to_top_a(t_stack *stack, int position)
-{
-	if ((stack->size / 2) < position)
-		position = (stack->size - position) * (-1);
-	if (position < 0)
-	{
-		while (position < 0)
-		{
-			rra(stack);
-			position++;
-		}
-	}
-	else
-	{
-		while (position > 0)
-		{
-			ra(stack);
-			position--;
-		}
-	}
-}
-
-MAYBE WILL USE LATER */
