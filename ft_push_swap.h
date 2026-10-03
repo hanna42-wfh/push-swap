@@ -75,6 +75,7 @@ char	*adaptive_alg(t_stack *stack_a, t_stack *stack_b, double disorder);
 
 /* pre-sort */
 void	pre_sort(t_stack *stack_a);
+void bubble_sort(int *temp_array, int len);
 void	assign_index(int *str, t_stack *stack_a);
 
 /* sorting functions */
