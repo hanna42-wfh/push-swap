@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bench_output.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hpiotrow <hpiotrow@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/03 14:42:42 by hpiotrow          #+#    #+#             */
+/*   Updated: 2026/10/03 14:42:45 by hpiotrow         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_push_swap.h"
 
 void	print_bench(t_stack *stack_a, double disorder, char *strategy, char *complexity)
