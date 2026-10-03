@@ -13,7 +13,7 @@ clean_stack_memory.c complex_alg.c create_empty_stack.c create_new_number.c \
 duplicity_checker.c \
 fill_stack_a.c \
 find_strategy.c \
-ft_push_swap.c \
+main.c \
 ft_push_swap_disorder.c \
 ft_push_swap_operations.c \
 ft_push_swap_sort.c \
