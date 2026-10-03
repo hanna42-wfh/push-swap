@@ -12,12 +12,31 @@
 
 #include "ft_push_swap.h"
 
+void	bubble_sort(int *temp_array, int len)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	i = 0;
+	while (i < len - 1)
+	{
+		j = 0;
+		while (j < len - i - 1)
+		{
+			if (temp_array[j] > temp_array[j + 1])
+				ft_swap(&temp_array[j], &temp_array[j + 1]);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	pre_sort(t_stack *stack_a)
 {
 	t_num	*curr;
 	int		*temp_array;
 	int		i;
-	int		j;
 	int		len;
 
 	len = stack_a->size;
@@ -32,25 +51,14 @@ void	pre_sort(t_stack *stack_a)
 		curr = curr->next;
 		i++;
 	}
-	i = 0;
-	while (i < len - 1)//sorting array copy
-	{
-		j = 0;
-		while (j < len - i - 1)
-		{
-			if (temp_array[j] > temp_array[j + 1])
-				ft_swap(&temp_array[j], &temp_array[j + 1]);
-			j++;
-		}
-		i++;
-	}
+	bubble_sort(temp_array, len);
 	assign_index(temp_array, stack_a);
 	free(temp_array);
 }
 
 void	assign_index(int *str, t_stack *stack_a)
 {
-	int	i;
+	int		i;
 	t_num	*curr;
 
 	curr = stack_a->top;
