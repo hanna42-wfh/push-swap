@@ -1,17 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_op_counting.c                                :+:      :+:    :+:   */
+/*   bench_output_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hpiotrow <hpiotrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/03 11:20:07 by hpiotrow          #+#    #+#             */
-/*   Updated: 2026/10/03 12:16:09 by hpiotrow         ###   ########.fr       */
+/*   Updated: 2026/10/03 18:49:56 by hpiotrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
+/* Writes the per-operation-type breakdown to stderr (one line per
+ * operation: sa, sb, ss, ra, rb, rr, rra, rrb, rrr, pa, pb), using
+ * count_operations' read-only range (100-110) to fetch each
+ * count without incrementing it. Called from print_bench as the
+ * last part of the --bench report. */
 void	print_op_counting(void)
 {
 	write(2, "sa: ", 4);
@@ -39,6 +44,12 @@ void	print_op_counting(void)
 	write(2, "\n", 1);
 }
 
+/* Writes disorder (a 0.0-1.0 fraction) to fd as a percentage with
+ * two decimal places, e.g. 0.8333 -> "83.33%\n". Scales to
+ * hundredths-of-a-percent as a whole number first (since no float
+ * formatting is available), then splits that into the whole-percent
+ * part and the two-decimal part, padding a leading zero on the
+ * decimal part when needed (so 3.05% doesn't print as "3.5%"). */
 void	ft_put_percent_fd(double disorder, int fd)
 {
 	int	percent;
