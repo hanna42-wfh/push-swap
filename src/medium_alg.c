@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   medium_alg.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mradkovi <mradkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpiotrow <hpiotrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/03 12:05:49 by mradkovi          #+#    #+#             */
-/*   Updated: 2026/10/03 12:06:01 by mradkovi         ###   ########.fr       */
+/*   Updated: 2026/10/03 13:33:51 by hpiotrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,18 @@ void	bring_to_top_b(t_stack *stack_b, int position)
 			position--;
 		}
 	}
+}
+
+int	ft_sqrt(int nb)
+{
+	int	i;
+
+	i = 0;
+	while (i <= 46340 && i * i < nb)
+	{
+		if (i * i == nb)
+			return (i);
+		i++;
+	}
+	return (i);
 }
