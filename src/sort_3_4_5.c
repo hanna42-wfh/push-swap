@@ -12,7 +12,7 @@
 
 #include "ft_push_swap.h"
 
-void sort_three(t_stack *stack_a)
+void	sort_three(t_stack *stack_a)
 {
 	int	a;
 	int	b;
@@ -20,35 +20,32 @@ void sort_three(t_stack *stack_a)
 
 	if (stack_a == NULL || stack_a->size < 3)
 		return ;
-
 	a = stack_a->top->value;
 	b = stack_a->top->next->value;
 	c = stack_a->top->next->next->value;
-
-	if (a > b && b > c)           //B: 3 2 1
+	if (a > b && b > c)
 	{
 		sa(stack_a);
 		rra(stack_a);
 	}
-	else if (a < b && b > c && a < c) //C: 1 3 2
+	else if (a < b && b > c && a < c)
 	{
 		rra(stack_a);
 		sa(stack_a);
 	}
-	else if (a < b && b > c && a > c) //D: 2 3 1
+	else if (a < b && b > c && a > c)
 		rra(stack_a);
-	else if (a > b && b < c && a < c) //E: 2 1 3
+	else if (a > b && b < c && a < c)
 		sa(stack_a);
-	else if (a > b && b < c && a > c) //F: 3 1 2
+	else if (a > b && b < c && a > c)
 		ra(stack_a);
 }
 
-void sort_four(t_stack *stack_a, t_stack *stack_b)
+void	sort_four(t_stack *stack_a, t_stack *stack_b)
 {
-	int minimum_idx;
+	int	minimum_idx;
 
 	minimum_idx = four_minimum_index(stack_a);
-
 	if (minimum_idx == 1)
 		sa(stack_a);
 	else if (minimum_idx == 2)
@@ -66,9 +63,9 @@ void sort_four(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-void sort_five(t_stack *stack_a, t_stack *stack_b)
+void	sort_five(t_stack *stack_a, t_stack *stack_b)
 {
-	int minimum_idx;
+	int	minimum_idx;
 
 	if (stack_a == NULL || stack_b == NULL)
 		return ;
@@ -95,7 +92,7 @@ void sort_five(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-int four_minimum_index(t_stack *stack_a)
+int	four_minimum_index(t_stack *stack_a)
 {
 	int	a;
 	int	b;
@@ -118,13 +115,13 @@ int four_minimum_index(t_stack *stack_a)
 	return (minimum_idx);
 }
 
-int five_minimum_index(t_stack *stack_a)
+int	five_minimum_index(t_stack *stack_a)
 {
-	int a;
-	int b;
-	int c;
-	int d;
-	int e;
+	int	a;
+	int	b;
+	int	c;
+	int	d;
+	int	e;
 
 	a = stack_a->top->value;
 	b = stack_a->top->next->value;
