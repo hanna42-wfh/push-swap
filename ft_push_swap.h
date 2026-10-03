@@ -126,6 +126,7 @@ int		validate_all_flags(int argc, char **argv);
 /* arguments validation */
 int		validate_args(char **splited_args);
 int		duplicity_checker(char **splited_args, int len);
+int		fill_sorted_copy(char **args, int *copy, int len);
 void	ft_swap(int *a, int *b);
 
 /* print stack for testing */
