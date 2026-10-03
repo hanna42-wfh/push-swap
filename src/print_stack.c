@@ -19,7 +19,7 @@ void print_stack (t_stack *stack_a)
    	current = stack_a->top;
    	while (current != NULL)
    	{
-   		printf ("%d\n", current->value);
+   		ft_printf ("%d\n", current->value);
    		current = current->next;
    	}
 }
