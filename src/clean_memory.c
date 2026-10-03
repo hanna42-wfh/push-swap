@@ -12,7 +12,7 @@
 
 #include "ft_push_swap.h"
 
-void clean_split_memory(char **splited_args)
+void	clean_split_memory(char **splited_args)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ void clean_split_memory(char **splited_args)
 	free(splited_args);
 }
 
-void clean_stack_memory(t_stack *stack)
+void	clean_stack_memory(t_stack *stack)
 {
 	t_num	*current_num;
 	t_num	*swap;
