@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "ft_push_swap.h"
+#include "ft_push_swap.h"
 
-double compute_disorder (t_stack *stack_a)
+double	compute_disorder(t_stack *stack_a)
 {
 	t_num	*i;
 	t_num	*j;
@@ -21,11 +21,9 @@ double compute_disorder (t_stack *stack_a)
 
 	if (stack_a == NULL || stack_a->top == NULL || stack_a->top->next == NULL)
 	{
-		// printf("stack error\n"); //DEBUG
 		return (0.00);
 	}
 	mistakes = 0;
-//	printf("\nsize = %i\n", stack_a->size); //DEBUG
 	total_pairs = (stack_a->size * (stack_a->size - 1)) / 2;
 	i = stack_a->top;
 	while (i != NULL)
@@ -33,7 +31,7 @@ double compute_disorder (t_stack *stack_a)
 		j = i->next;
 		while (j != NULL)
 		{
-			if(i->value > j->value)
+			if (i->value > j->value)
 				mistakes++;
 			j = j->next;
 		}
