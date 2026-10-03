@@ -6,12 +6,16 @@
 /*   By: hpiotrow <hpiotrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/03 12:01:44 by hpiotrow          #+#    #+#             */
-/*   Updated: 2026/10/03 13:27:07 by hpiotrow         ###   ########.fr       */
+/*   Updated: 2026/10/03 18:37:17 by hpiotrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
+/* Sorts exactly 3 elements with at most 2 operations, using a
+ * hardcoded decision over the 6 possible orderings of (a, b, c) =
+ * (top, 2nd, 3rd). Does nothing if stack_a is NULL or has fewer
+ * than 3 elements. */
 void	sort_three(t_stack *stack_a)
 {
 	int	a;
@@ -41,6 +45,11 @@ void	sort_three(t_stack *stack_a)
 		ra(stack_a);
 }
 
+/* Sorts exactly 4 elements: rotates the minimum to the top (the
+ * short way, based on its position), then if the remaining 3
+ * aren't already sorted, pushes the minimum to stack_b, sorts the
+ * other 3 with sort_three, and pushes the minimum back on top
+ * (correct, since it's the smallest of all 4). */
 void	sort_four(t_stack *stack_a, t_stack *stack_b)
 {
 	int	minimum_idx;
@@ -63,6 +72,10 @@ void	sort_four(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
+/* Sorts exactly 5 elements: same peel-off-the-minimum pattern as
+ * sort_four, one level up — rotates the minimum of all 5 to the
+ * top, then (if needed) sets it aside in stack_b, sorts the
+ * remaining 4 with sort_four, and pushes the minimum back on top. */
 void	sort_five(t_stack *stack_a, t_stack *stack_b)
 {
 	int	minimum_idx;
@@ -92,6 +105,10 @@ void	sort_five(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
+/* Finds which of the 4 positions (top, 2nd, 2nd-from-bottom,
+ * bottom) holds the smallest value, for a stack of exactly 4
+ * elements. Returns 0-3, used by sort_four to decide the shortest
+ * rotation direction to bring it to the top. */
 int	four_minimum_index(t_stack *stack_a)
 {
 	int	a;
@@ -115,6 +132,10 @@ int	four_minimum_index(t_stack *stack_a)
 	return (minimum_idx);
 }
 
+/* Finds which of the 5 positions (top, 2nd, 3rd, 2nd-from-bottom,
+ * bottom) holds the smallest value, for a stack of exactly 5
+ * elements. Returns 0-4, used by sort_five the same way
+ * four_minimum_index is used by sort_four. */
 int	five_minimum_index(t_stack *stack_a)
 {
 	int	a;
