@@ -32,7 +32,7 @@ typedef struct s_stack
 
 /* main functions */
 int		arg_checker(int argc);
-int		run_push_swap(t_stack *stack_a, t_stack *stack_b, char *strategy, int bench)
+int		run_push_swap(t_stack *stack_a, t_stack *stack_b, char *strategy, int bench);
 
 
 /*simple_alg*/
